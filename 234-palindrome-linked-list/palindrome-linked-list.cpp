@@ -37,18 +37,23 @@ public:
         
         temp1=temp1->next;
         temp2=temp1;
+        temp1=nullptr;
         while(temp2!=nullptr)
         {
-            if(c==0)
-            {
-                temp1=new ListNode(temp2->val);
-                c++;
-            }
-            else
-            {
-                temp1=new ListNode(temp2->val,temp1);
-            }
-            temp2=temp2->next;
+            ListNode* nextnode=temp2->next;
+            temp2->next=temp1;
+            temp1=temp2;
+            temp2=nextnode;
+            // if(c==0)
+            // {
+            //     temp1=new ListNode(temp2->val);
+            //     c++;
+            // }
+            // else
+            // {
+            //     temp1=new ListNode(temp2->val,temp1);
+            // }
+            // temp2=temp2->next;
         }
         temp2=head;
         while(temp1!=nullptr)
