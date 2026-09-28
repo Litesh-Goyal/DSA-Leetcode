@@ -10,59 +10,43 @@
  */
 class Solution {
 public:
-    bool isPalindrome(ListNode* head) 
+    bool isPalindrome(ListNode* head)
     {
-        if(head==nullptr){return false;}
-        if(head->next==nullptr){return true;}
-        // vector<int> v;
-        // ListNode* temp=head;
-        // while(temp!=nullptr)
-        // {
-        //     v.push_back(temp->val);
-        //     temp=temp->next;
-        // }
-        // for(int i=0;i<v.size()/2;i++)
-        // {
-        //     if(v[i]!=v[v.size() -i -1]){return false;}
-        // }
-        // return true;
-        ListNode* temp1=head;
-        ListNode* temp2=head;
-        while(temp2->next!=nullptr && temp2->next->next!=nullptr)
+        if(head==nullptr || head->next==nullptr || (head->next->next==nullptr && head->val== head->next->val)){return true;}
+        ListNode* temp=head;
+        vector<int> v;
+        while(temp!=nullptr)
         {
-            temp1=temp1->next;
-            temp2=temp2->next->next;
+            v.push_back(temp->val);
+            temp=temp->next;
         }
-        int c=0;
-        
-        temp1=temp1->next;
-        temp2=temp1;
-        temp1=nullptr;
-        while(temp2!=nullptr)
+        int n=v.size();
+        int c=n/2;
+        int i=0;
+        while(c>0)
         {
-            ListNode* nextnode=temp2->next;
-            temp2->next=temp1;
-            temp1=temp2;
-            temp2=nextnode;
-            // if(c==0)
-            // {
-            //     temp1=new ListNode(temp2->val);
-            //     c++;
-            // }
-            // else
-            // {
-            //     temp1=new ListNode(temp2->val,temp1);
-            // }
-            // temp2=temp2->next;
-        }
-        temp2=head;
-        while(temp1!=nullptr)
-        {
-            if(temp2->val != temp1->val){return false;}
-            temp2=temp2->next;
-            temp1=temp1->next;
+            if(v[i++]!=v[--n]){return false;}
+            c--;
         }
         return true;
+        // ListNode* temp=head;
+        // ListNode* slow=head;
+        // ListNode* fast=head;
+        // while(fast->next!=nullptr && fast->next->next!=nullptr)
+        // {
+        //     slow=slow->next;
+        //     fast=fast->next->next;
+        // }
+        // ListNode t1
+        // slow=slow->next;
+        // while(slow!=nullptr)
+        // {
+        //     if(temp->val != slow->val ){return false;}
+        //     temp=temp->next;
+        //     slow=slow->next;
+        // }
+        // return true;
 
+        
     }
 };
