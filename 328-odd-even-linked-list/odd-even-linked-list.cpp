@@ -26,10 +26,9 @@ public:
             c++;
             temp=temp->next;
         }
-        if(c%2==1)
+        c%2==1 ? (c=c/2) : c=(c/2)-1;
+        for(int i=0;i<c;i++)
         {
-            c=c/2;
-            for(int i=0;i<c;i++)
             {
                 h1->next=h2->next;
                 h1=h1->next;
@@ -37,21 +36,7 @@ public:
                 h2=h2->next;
             }
             h1->next=hh;
-        }
-        else
-        {
-            c=c/2;
-            for(int i=0;i<c-1;i++)
-            {
-                h1->next=h2->next;
-                h1=h1->next;
-                h2->next=h1->next;
-                h2=h2->next;
-            }
-            h1->next=hh;
-            
         }
         return head;
-        
     }
 };
